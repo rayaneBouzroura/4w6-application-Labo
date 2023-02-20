@@ -5,8 +5,21 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/rv1tv"
+        android:id="@+id/rv2tva"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:text="TextView"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/rv2tvb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:padding="10dp"/>
+    <TextView
+        android:id="@+id/rv2tvc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:padding="10dp"/>
 </LinearLayout>

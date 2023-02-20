@@ -1,9 +1,7 @@
 package com.example.listes;
 
-import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -11,42 +9,54 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.logging.LoggingMXBean;
+import com.example.listes.transfert.objList;
 
-public class rvAdapter1 extends RecyclerView.Adapter<rvAdapter1.MyViewHolder> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class rvAdapter2 extends RecyclerView.Adapter<rvAdapter2.MyViewHolder> {
 
     /**
      * Liste qui contient l'ensemble des éléments à afficher dans la liste
      */
-    public List<Long> localDataSet;
+    public List<objList> localDataSet;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        public final TextView tvLong;
+        public final TextView tva;
+        public final TextView tvb;
+        public final TextView tvc;
         public MyViewHolder(LinearLayout v) {
             super(v);
-            tvLong = v.findViewById(R.id.rv1tv);
+            tva = v.findViewById(R.id.rv2tva);
+            tvb = v.findViewById(R.id.rv2tvb);
+            tvc = v.findViewById(R.id.rv2tvc);
         }
 
     }
-    public rvAdapter1() {
+    public rvAdapter2() {
         localDataSet = new ArrayList<>();
     }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.elementrv1, parent, false);
+                .inflate(R.layout.elementrv2, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Long tacheCourante = localDataSet.get(position);
-        holder.tvLong.setText(tacheCourante.toString());
+        objList objCourant = localDataSet.get(position);
+        if(objCourant != null){
+            holder.tva.setText(objCourant.a.toString());
+            holder.tvb.setText(objCourant.b);
+            holder.tvc.setText(String.valueOf(objCourant.c.length));
+        }
+        else {
+            Log.i("retrofit","oh no");
+        }
+
     }
 
     @Override

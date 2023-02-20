@@ -1,6 +1,7 @@
 package com.example.listes;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -10,6 +11,16 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+import com.example.listes.http.RetrofitUtil;
+import com.example.listes.http.Service;
+import com.example.listes.transfert.objList;
+
+import java.io.IOException;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -18,9 +29,19 @@ import static org.junit.Assert.*;
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
     @Test
-    public void useAppContext() {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.listes", appContext.getPackageName());
+    public void testSimple() throws IOException {
+        Service instanceService = RetrofitUtil.get();
+        Call<List<Long>> call = instanceService.getLongList();
+        Response<List<Long>> response = call.execute();
+        List<Long> resultat = response.body();
+        Log.i("RETROFIT", "resultat");
+    }
+    @Test
+    public void testComplexe() throws IOException {
+        Service instanceService = RetrofitUtil.get();
+        Call<List<objList>> call = instanceService.getComplexeList();
+        Response<List<objList>> response = call.execute();
+        List<objList> resultat = response.body();
+        Log.i("RETROFIT", "resultat");
     }
 }
