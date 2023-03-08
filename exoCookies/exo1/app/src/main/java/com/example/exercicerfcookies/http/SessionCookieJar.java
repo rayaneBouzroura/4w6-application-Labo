@@ -1,4 +1,4 @@
-package org.deguet.retrofit2_demo.http;
+package com.example.exercicerfcookies.http;
 
 import java.util.ArrayList;
 import java.util.Collections;
